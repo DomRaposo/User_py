@@ -12,7 +12,7 @@ class UserRepository:
             with conn.cursor() as cursor:
                 query = f"""
                 INSERT INTO users (id, name, email)
-                VALUE ({user.id}, '{user.id}', '{user.email}')
+                VALUE ({user.id}, '{user.name}', '{user.email}')
                 """
 
                 cursor.execute(query)
