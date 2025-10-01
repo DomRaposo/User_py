@@ -21,4 +21,16 @@ class UserRepository:
 
                 print(f"User {user.name} inserted with sucess ")
                 
+    def find_by_id(self, user_id: int)->None:
+
+        with mysql.connector.connect(**self.db.config) as conn:
+            
+            with conn.cursur(disctionary= True) as cursor:            
+                query = "SELCT id, name, email FROM users WHERE id = %s"
+
+                cursor.execute(query, (user_id,))
+                
+                user_data = cursor.fetchone()
+
+                return user_data
             

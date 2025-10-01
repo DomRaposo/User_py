@@ -7,8 +7,21 @@ class UserService:
         self.user_repo = user_repo
         
     def create_user(self, id: int, name: str, email: str)-> User:
-        new_user = User()
+        new_user = User(id = id, name = name, email = email)
 
         self.user_repo.create(new_user)
 
         return new_user
+
+    def get_user(self, user_id: int) -> User | None:
+        user_data = self.user_repo.find_by_id(user_id)
+
+        if user_data:
+            return User(**user_data)
+        else:
+            return None
+
+
+
+
+          
