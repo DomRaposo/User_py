@@ -33,4 +33,23 @@ class UserRepository:
                 user_data = cursor.fetchone()
 
                 return user_data
+<<<<<<< HEAD
             
+=======
+    
+    def update(self, user: User)-> bool:
+            # self.db_config para evitar o erro de digitação
+        with mysql.connector.connect(**self.db.config) as conn:
+            # Montar o SQL de UPDATE com placeholders
+            query = "UPDATE users SET name = %s , email = %s, where id = %s"
+            values = (user.name, user.email, user.id)
+
+            cursor.execute(query, values)
+
+            conn.commit()
+
+            # O que o MySQL retorna após um UPDATE?
+            if cursor.rowcount > 0:
+                return True
+            return False
+>>>>>>> origin/master
